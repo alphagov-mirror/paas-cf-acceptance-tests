@@ -139,7 +139,7 @@ func CreateRoute(space, domain, host string) {
 func DeleteApp(appGuid string) {
 	session := cf.Cf("curl", fmt.Sprintf("/v3/apps/%s", appGuid), "-X", "DELETE", "-v")
 	bytes := session.Wait(Config.DefaultTimeoutDuration()).Out.Contents()
-	Expect(bytes).To(ContainSubstring("204 No Content"))
+	Expect(bytes).To(ContainSubstring("202 Accepted"))
 }
 
 func DeleteIsolationSegment(guid string) {
